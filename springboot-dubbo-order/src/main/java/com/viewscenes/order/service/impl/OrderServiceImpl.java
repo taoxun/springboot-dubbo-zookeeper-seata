@@ -9,6 +9,8 @@ import com.viewscenes.order.service.OrderService;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +29,14 @@ public class OrderServiceImpl implements OrderService {
 
     AtomicInteger order_id = new AtomicInteger(0);
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     @GlobalTransactional
     public void createOrder(OrderDTO orderDTO) {
 
-        System.out.println("开始全局事务。XID="+RootContext.getXID());
+
+        logger.info("开始全局事务。XID:{}",RootContext.getXID());
 
         StorageDTO storageDTO = new StorageDTO();
         storageDTO.setCount(orderDTO.getCount());
@@ -47,6 +52,6 @@ public class OrderServiceImpl implements OrderService {
         BeanUtils.copyProperties(orderDTO,order);
         orderMapper.createOrder(order);
 
-        throw new RuntimeException("分布式事务异常..."+orderDTO.getOrderNo());
+        logger.info("订单已创建：{}",orderDTO.getOrderNo());
     }
 }
