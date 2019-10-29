@@ -6,7 +6,6 @@
         <groupId>com.viewscenes</groupId>
         <artifactId>springboot-dubbo-seata</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <groupId>com.viewscenes.order</groupId>
     <artifactId>springboot-dubbo-order</artifactId>
@@ -25,4 +24,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

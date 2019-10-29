@@ -6,7 +6,6 @@
         <groupId>com.viewscenes</groupId>
         <artifactId>springboot-dubbo-seata</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <groupId>com.viewscenes</groupId>
     <artifactId>springboot-dubbo-common</artifactId>
